@@ -10,14 +10,15 @@ source:
   sha256: abfe5d0bc602c620b61fea10f0d4a9686bafc05e5199019b201ac7539a8e4852
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: True  # [s390x]
 
 requirements:
   host:
     - python
     - pip
+    - wheel
   run:
     - python
     - opencv >=4.1.0.25
@@ -34,6 +35,7 @@ about:
   summary: Make drawing and labeling bounding boxes easy as cake
   home: https://github.com/shoumikchow/bbox-visualizer
   license: MIT
+  license_family: MIT
   license_file: LICENSE
   doc_url: https://bbox-visualizer.readthedocs.io/
   dev_url: https://github.com/shoumikchow/bbox-visualizer
