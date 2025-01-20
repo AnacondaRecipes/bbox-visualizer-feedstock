@@ -1,0 +1,47 @@
+{% set name = "bbox-visualizer" %}
+{% set version = "0.1.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/shoumikchow/bbox-visualizer/archive/{{ version }}.tar.gz
+  sha256: abfe5d0bc602c620b61fea10f0d4a9686bafc05e5199019b201ac7539a8e4852
+
+build:
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+    - opencv >=4.1.0.25
+
+test:
+  imports:
+    - bbox_visualizer
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  summary: Make drawing and labeling bounding boxes easy as cake
+  home: https://github.com/shoumikchow/bbox-visualizer
+  license: MIT
+  license_file: LICENSE
+  doc_url: https://bbox-visualizer.readthedocs.io/
+  dev_url: https://github.com/shoumikchow/bbox-visualizer
+  description: |
+    This package helps users draw bounding boxes around objects, without doing the clumsy math
+    that you'd need to do for positioning the labels. It also has a few different types of visualizations
+    you can use for labeling objects after identifying them.
+
+extra:
+  recipe-maintainers:
+    - solesnake
