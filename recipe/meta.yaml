@@ -12,7 +12,8 @@ source:
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: True  # [s390x]
+  skip: True  # [py<35]
+  skip: True  # [s390x]  # beсause of opencv
 
 requirements:
   host:
